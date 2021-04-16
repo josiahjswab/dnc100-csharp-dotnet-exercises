@@ -116,13 +116,38 @@ namespace CSharpExercises
                 sum = sum + arr[i];
             }
             double result = (sum/arr.Length);
-            Console.WriteLine(sum/arr.Length);
-            Console.WriteLine(sum);
-            Console.WriteLine(result);
+            //Console.WriteLine(sum/arr.Length);
+            //Console.WriteLine(sum);
+            //Console.WriteLine(result);
             return result;
         }
         // 11. Create a method called GetAverageEasy that accepts an array of integers and returns the average value as a double. (Using only built in functions)
+        public static double GetAverageEasy(int[] arr)
+        {
+            double average = arr.Average();
+            return average;
+        }
         // 12. Create a method called DrawTriangle that accepts two integers - number and width and returns a string containing a drawn triangle using the number parameter.
+        public static string DrawTriangle(int num, int width)
+        {
+            string result = "";
+            int widthCount = width;
+            for (int j = 0; j < width; j++)
+            {
+                for (int i = 0; i < widthCount; i ++)
+                {
+                    result += num;
+                }
+                widthCount -= 1;
+                if (widthCount != 0)
+                {
+                    result += "\r\n";
+                }
+            }
+            Console.WriteLine(result);
+            return result;
+        }
+
         /* e.g. Number: 8, Width: 8 should return
          * 88888888
          * 8888888
@@ -132,6 +157,7 @@ namespace CSharpExercises
          * 888
          * 88
          * 8 */
+
 
         // 13. Create a method called GetMilesPerHour that accepts a double representing distance and three integers representing hours, minutes and seconds. The method should return the speed in MPH rounded to the nearest whole number as a string. (e.g. "55MPH")
 
