@@ -85,9 +85,9 @@ namespace CSharpExercises
             string result = "";
             for (int i = 1; i < 10; i++)
             {
-                result += $"{num} * {i} = {num * i}\r\n"; 
+                result += $"{num} * {i} = {num * i}\r\n";
             }
-                result += $"{num} * {10} = {num * 10}";
+            result += $"{num} * {10} = {num * 10}";
             return result;
         }
         /* e.g. 10 should return
@@ -104,7 +104,7 @@ namespace CSharpExercises
         // 9. Create a method called ConvertKelvinToFahrenheit that accepts a double representing a temperature in kelvin and returns a double containing the temperature in Fahrenheit.
         public static double ConvertKelvinToFahrenheit(double num)
         {
-            string result = ((num - 273.15) * 9/5 + 32).ToString("N2");
+            string result = ((num - 273.15) * 9 / 5 + 32).ToString("N2");
             return Convert.ToDouble(result);
         }
         // 10. Create a method called GetAverageHard that accepts an array of integers and returns the average value as a double. (No built in functions allowed)
@@ -115,7 +115,7 @@ namespace CSharpExercises
             {
                 sum = sum + arr[i];
             }
-            double result = (sum/arr.Length);
+            double result = (sum / arr.Length);
             //Console.WriteLine(sum/arr.Length);
             //Console.WriteLine(sum);
             //Console.WriteLine(result);
@@ -134,7 +134,7 @@ namespace CSharpExercises
             int widthCount = width;
             for (int j = 0; j < width; j++)
             {
-                for (int i = 0; i < widthCount; i ++)
+                for (int i = 0; i < widthCount; i++)
                 {
                     result += num;
                 }
@@ -144,7 +144,6 @@ namespace CSharpExercises
                     result += "\r\n";
                 }
             }
-            Console.WriteLine(result);
             return result;
         }
 
@@ -160,10 +159,71 @@ namespace CSharpExercises
 
 
         // 13. Create a method called GetMilesPerHour that accepts a double representing distance and three integers representing hours, minutes and seconds. The method should return the speed in MPH rounded to the nearest whole number as a string. (e.g. "55MPH")
-
-
+        public static string GetMilesPerHour(double distance, int hours, int minutes, int seconds)
+        {
+            double d = Convert.ToDouble(distance);
+            double h = Convert.ToDouble(hours * 60 * 60);
+            double m = Convert.ToDouble(minutes * 60);
+            double s = Convert.ToDouble(seconds);
+            double result = Math.Round(distance / ((h + m + s) / 60 / 60));
+            //Console.WriteLine(h);
+            //Console.WriteLine(m);
+            //Console.WriteLine(s);
+            //Console.WriteLine(result);
+            return $"{result}MPH";
+        }
         // 14. Create a method called IsVowel that accepts a char parameter and returns true if the parameter is a vowel or false if the parameter is a consonant.
+        public static bool IsVowel(char character)
+        {
+            bool result = false;
+            switch (character)
+            {
+                case 'a':
+                    result = true;
+                    break;
+                case 'e':
+                    result = true;
+                    break;
+                case 'i':
+                    result = true;
+                    break;
+                case 'o':
+                    result = true;
+                    break;
+                case 'u':
+                    result = true;
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
         // 15. Create a method called IsConsonant that accepts a char parameter and returns true if the parameter is a consonant or false if the parameter is a vowel.
+        public static bool IsConsonant(char character)
+        {
+            bool result = true;
+            switch (character)
+            {
+                case 'a':
+                    result = false;
+                    break;
+                case 'e':
+                    result = false;
+                    break;
+                case 'i':
+                    result = false;
+                    break;
+                case 'o':
+                    result = false;
+                    break;
+                case 'u':
+                    result = false;
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
         // 16. The Collatz conjecture, named after Lothar Collatz of Germany, proposed the following conjecture in 1937. 
         // Beginning with an integer n > 1, repeat the following until n == 1. If n is even, halve it. If n is odd, triple it and add 1. Following these steps, the function will always arrive at the number 1.
         // Create a method called CollatzConjecture that accepts an integer and returns the number of steps required to get to n == 1 as an integer.
