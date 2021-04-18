@@ -224,12 +224,66 @@ namespace CSharpExercises
             }
             return result;
         }
-        // 16. The Collatz conjecture, named after Lothar Collatz of Germany, proposed the following conjecture in 1937. 
+        // 16. The Collatz conjecture, named after Lothar Collatz of Germany, proposed the following conjecture in 1937.
         // Beginning with an integer n > 1, repeat the following until n == 1. If n is even, halve it. If n is odd, triple it and add 1. Following these steps, the function will always arrive at the number 1.
         // Create a method called CollatzConjecture that accepts an integer and returns the number of steps required to get to n == 1 as an integer.
-
+        public static int CollatzConjecture(int num)
+        {
+            int count = 0;
+            int number = num;
+            while (number != 1)
+            {
+                if (number % 2 != 0)
+                {
+                    number *= 3;
+                    number += 1;
+                    count++;
+                }
+                if (number % 2 == 0)
+                {
+                    number /= 2;
+                    count++;
+                }
+            }
+            return count;
+        }
         // 17. Create a method called GetNext7Days that accepts a DateTime object and returns an array of DateTime objects containing the next 7 days (including the given day).
+        public static DateTime[] GetNext7Days(DateTime date)
+        {
+            DateTime dt = date;
+            string dateString = dt.ToString().Split(' ')[0];
+            string[] d = dateString.Split('/');
+            int day = int.Parse(d[1]);
+            int month = int.Parse(d[0]);
+            int year = int.Parse(d[2]); 
+            //Console.WriteLine(String.Join(Environment.NewLine, d));
+            //Console.WriteLine($"year: {year}");
+            return new DateTime[] { new DateTime(year, month, day), new DateTime(year, month, day + 1), new DateTime(year, month, day + 2), new DateTime(year, month, day + 3), new DateTime(year, month, day  + 4), new DateTime(year, month, day + 5), new DateTime(year, month, day + 6) };
+        }
         // 18. Create a method called IsInLeapYear that accepts a DateTime object and returns true if the date falls within a leap year and false if not. (No built in functions allowed)
+        public static bool IsInLeapYear(int date)
+        {
+            Console.WriteLine($"date: {date % 4}");
+            if(date % 4 == 0)
+            {
+                if(date % 100 != 0)
+                {
+                    return true;
+                }
+                if(date % 100 == 0 && date % 400 == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         // 19. Create a method called MortgageCalculator that accepts 2 decimals representing loan balance and interest rate, an integer representing loan term in years, and an integer representing the payment period.
         /* Payment periods: 1 - Monthly, 2 - Bi-Monthly (Every 2 months) */
 
