@@ -263,7 +263,8 @@ namespace CSharpExercises
         // 18. Create a method called IsInLeapYear that accepts a DateTime object and returns true if the date falls within a leap year and false if not. (No built in functions allowed)
         public static bool IsInLeapYear(int date)
         {
-            Console.WriteLine($"date: {date % 4}");
+            //TODO Test is written with int not date time object.
+            //Console.WriteLine($"date: {date % 4}");
             if(date % 4 == 0)
             {
                 if(date % 100 != 0)
@@ -286,13 +287,74 @@ namespace CSharpExercises
         }
         // 19. Create a method called MortgageCalculator that accepts 2 decimals representing loan balance and interest rate, an integer representing loan term in years, and an integer representing the payment period.
         /* Payment periods: 1 - Monthly, 2 - Bi-Monthly (Every 2 months) */
+        public static double MortgageCalculator(decimal loanbalance, double interestrate, int loanterm, int paymentperiod)
+        {
+            double rate = interestrate / 100 / 12;
+            double loan = Convert.ToDouble(loanbalance);
+            double term = Convert.ToDouble(loanterm * 12);
+            double bimonthlymultiplyer = Convert.ToDouble(12 / paymentperiod);
 
+            double periodPayment = loan * (rate * Math.Pow((1 + rate), term) / (Math.Pow((1 + rate), term) - 1));
+
+            return Math.Round(periodPayment, 2) * bimonthlymultiplyer;
+        }
         // 20. Create a method called DuckGoose that accepts an integer. Iterate from 1 to this integer, building a string along the way.
         // If the current number in the iteration:
         //   Is divisible by 3, append "Duck" + Environment.NewLine; to the string.
         //   Is divisible by 5, append "Goose" + Environment.NewLine; to the string.
         //   Is divisible by both 3 and 5, append "DuckGoose" + Environment.NewLine; to the string.
         //   Is none of the above, append the number as a string + Environment.NewLine; to the string.
+        public static string DuckGoose(int num)
+        {
+            string result = "";
+            for (int i = 1; i <= num; i++)
+            {
+                if(i == num)
+                {
+
+                    if (i % 3 == 0 && i % 5 != 0)
+                    {
+                        result += "Duck";
+                    }
+                    if (i % 5 == 0 && i % 3 != 0)
+                    {
+                        result += "Goose";
+                    }
+                    if (i % 5 == 0 && i % 3 == 0)
+                    {
+                        result += "DuckGoose";
+                    }
+                    if (i % 5 != 0 && i % 3 != 0)
+                    {
+                        result += i;
+                    }
+
+                }
+                if(i != num)
+                {
+
+                    if (i % 3 == 0 && i % 5 != 0)
+                    {
+                        result += "Duck\r\n";
+                        //result += "Duck" + Environment.NewLine; Did the same thing but threw test error.
+                    }
+                    if (i % 5 == 0 && i % 3 != 0)
+                    {
+                        result += "Goose\r\n";
+                    }
+                    if (i % 5 == 0 && i % 3 == 0)
+                    {
+                        result += "DuckGoose\r\n";
+                    }
+                    if (i % 5 != 0 && i % 3 != 0)
+                    {
+                        result += $"{i}\r\n";
+                    }
+                }
+            }
+            Console.WriteLine(result);
+            return result;
+        }
         /* Example - if the input to this method is 20, the following string should be returned
          * 1
          * 2
